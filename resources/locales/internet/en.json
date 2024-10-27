@@ -1,0 +1,37 @@
+{
+  "browser": [
+    "Chrome",
+    "Firefox",
+    "Safari",
+    "Edge",
+    "Opera",
+    "Zen",
+    "Arc Browser",
+    "Brave",
+    "Vivaldi",
+    "Internet Explorer",
+    "UC Browser",
+    "Samsung Internet",
+    "Tor Browser",
+    "Pale Moon",
+    "Epiphany (GNOME Web)",
+    "Maxthon",
+    "Midori",
+    "SeaMonkey",
+    "Lunascape",
+    "Avant Browser",
+    "SlimBrowser",
+    "Yandex Browser",
+    "Opera GX",
+    "Konqueror"
+  ],
+  "browserEngine": [
+    "Blink",
+    "Gecko",
+    "WebKit",
+    "Trident",
+    "Goanna",
+    "WebKitGTK",
+    "KHTML, WebKit"
+  ]
+}

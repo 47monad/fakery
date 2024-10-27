@@ -1,0 +1,30 @@
+{
+  "areaCode": [
+    "41",
+    "21",
+    "71"
+  ],
+  "countryCode": [
+    "98"
+  ],
+  "exchangeCode": [
+    "912",
+    "914",
+    "915",
+    "916",
+    "933",
+    "942",
+    "992",
+    "936"
+  ],
+  "format": [
+    "{{areaCode}}{{num 8}}",
+    "{{areaCode}}{{num 4}}{{num 4}}",
+    "{{areaCode}} {{num 4}} {{num 4}}"
+  ],
+  "mobileFormat": [
+    "{{exchangeCode}}-{{num 3}}-{{num 4}}",
+    "{{exchangeCode}} {{num 3}} {{num 4}}",
+    "{{exchangeCode}}{{num 3}}{{num 4}}"
+  ]
+}
