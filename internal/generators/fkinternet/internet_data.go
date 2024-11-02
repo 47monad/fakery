@@ -6,8 +6,11 @@ import (
 )
 
 type InternetData struct {
-	Browser       []string `json:"browser"`
-	BrowserEngine []string `json:"browserEngine"`
+	Browser          []string `json:"browser"`
+	BrowserEngine    []string `json:"browserEngine"`
+	DomainSuffix     []string `json:"domainSuffix"`
+	SafeDomainSuffix []string `json:"safeDomainSuffix"`
+	Slug             []string `json:"slug"`
 }
 
 func NewInternetData(opts *fktypes.FakeryConfig) *fktypes.ResultData[InternetData] {
@@ -24,4 +27,16 @@ func keyBrowser(d *InternetData) []string {
 
 func keyBrowserEngine(d *InternetData) []string {
 	return d.BrowserEngine
+}
+
+func keyDomainSuffix(d *InternetData) []string {
+	return d.DomainSuffix
+}
+
+func keySafeDomainSuffix(d *InternetData) []string {
+	return d.SafeDomainSuffix
+}
+
+func keySlug(d *InternetData) []string {
+	return d.Slug
 }
