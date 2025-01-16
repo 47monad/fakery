@@ -11,7 +11,7 @@ type Faker struct {
 	ctx *fk.Context[fkdata.Lorem]
 }
 
-func New(opts ...fkopts.Builder[fkopts.FakerOpts]) *Faker {
+func New(opts ...fkopts.Builder[fkopts.FakerOpts[fkdata.Lorem]]) *Faker {
 	_opts, _ := fkopts.Build(opts...)
 	ctx := fk.NewContext(_opts.Tag, _opts.Data)
 	if ctx.Data == nil {

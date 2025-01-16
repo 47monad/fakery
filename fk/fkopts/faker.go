@@ -1,30 +1,29 @@
 package fkopts
 
 import (
-	"github.com/47monad/fakery/fk/fkdata"
 	"github.com/47monad/fakery/internal/binder"
 )
 
-type FakerOpts struct {
+type FakerOpts[K any] struct {
 	Lang
-	Data          *binder.Data[fkdata.Lorem]
+	Data          *binder.Data[K]
 	ExcludedWords []string
 }
 
-type FakerBuilder struct {
-	Opts []func(*FakerOpts) error
+type FakerBuilder[K any] struct {
+	Opts []func(*FakerOpts[K]) error
 }
 
-func (b *FakerBuilder) List() []func(*FakerOpts) error {
+func (b *FakerBuilder[K]) List() []func(*FakerOpts[K]) error {
 	return b.Opts
 }
 
-func Faker() *FakerBuilder {
-	return &FakerBuilder{}
+func Faker[K any]() *FakerBuilder[K] {
+	return &FakerBuilder[K]{}
 }
 
-func (b *FakerBuilder) SetLang(lang string) *FakerBuilder {
-	b.Opts = append(b.Opts, func(wo *FakerOpts) error {
+func (b *FakerBuilder[K]) SetLang(lang string) *FakerBuilder[K] {
+	b.Opts = append(b.Opts, func(wo *FakerOpts[K]) error {
 		l, err := NewLang(lang)
 		if err != nil {
 			return err
@@ -37,8 +36,8 @@ func (b *FakerBuilder) SetLang(lang string) *FakerBuilder {
 	return b
 }
 
-func (b *FakerBuilder) SetData(data *binder.Data[fkdata.Lorem]) *FakerBuilder {
-	b.Opts = append(b.Opts, func(wo *FakerOpts) error {
+func (b *FakerBuilder[K]) SetData(data *binder.Data[K]) *FakerBuilder[K] {
+	b.Opts = append(b.Opts, func(wo *FakerOpts[K]) error {
 		wo.Data = data
 
 		return nil

@@ -6,8 +6,15 @@ import (
 )
 
 type Context[K any] struct {
-	Lang language.Tag
-	Data *binder.Data[K]
+	Lang   language.Tag
+	Data   *binder.Data[K]
+	binder func(language.Tag) *binder.Data[K]
+}
+
+func (c *Context[K]) SetBinder(fn func(language.Tag) *binder.Data[K]) *Context[K] {
+	c.binder = fn
+	c.Data = c.binder(c.Lang)
+	return c
 }
 
 func DefaultContext[K any]() *Context[K] {
