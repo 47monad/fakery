@@ -3,12 +3,12 @@ package fakery
 import (
 	"embed"
 
+	"github.com/47monad/fakery/fk/fkapp"
+	"github.com/47monad/fakery/fk/fkdevice"
 	"github.com/47monad/fakery/internal/fkgeneral"
 	"github.com/47monad/fakery/internal/fktypes"
-	"github.com/47monad/fakery/internal/generators/fkapp"
 	"github.com/47monad/fakery/internal/generators/fkcolor"
 	"github.com/47monad/fakery/internal/generators/fkcompany"
-	"github.com/47monad/fakery/internal/generators/fkdevice"
 	"github.com/47monad/fakery/internal/generators/fkinternet"
 	"github.com/47monad/fakery/internal/generators/fknumber"
 	"github.com/47monad/fakery/internal/generators/fkperson"
@@ -40,12 +40,12 @@ func Person() fkperson.PersonGenerator {
 	return fkperson.NewPersonGenerator(prepareConfig())
 }
 
-func Device() fkdevice.DeviceGenerator {
-	return fkdevice.NewDeviceGenerator(prepareConfig())
+func Device() *fkdevice.Faker {
+	return fkdevice.New()
 }
 
-func App() fkapp.AppGenerator {
-	return fkapp.NewAppGenerator(prepareConfig())
+func App() *fkapp.Faker {
+	return fkapp.New()
 }
 
 func Internet() fkinternet.InternetGenerator {
