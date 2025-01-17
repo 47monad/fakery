@@ -9,22 +9,22 @@ import (
 	"github.com/47monad/fakery/fk/fkdata"
 	"github.com/47monad/fakery/fk/fkopts"
 	"github.com/47monad/fakery/fk/fkperson"
-	"github.com/47monad/fakery/internal/fkgeneral"
+	"github.com/47monad/fakery/internal/randomizer"
 	"github.com/47monad/fakery/internal/sampler"
 )
 
 func ipv4Address() string {
-	num := func() int { return fkgeneral.RandomInt(256) }
+	num := func() int { return randomizer.Int(256) }
 	return fmt.Sprintf("%d.%d.%d.%d", num(), num(), num(), num())
 }
 
 func ipv6Address() string {
-	num := func() int { return fkgeneral.RandomInt(65536) }
+	num := func() int { return randomizer.Int(65536) }
 	return fmt.Sprintf("%x:%x:%x:%x:%x:%x:%x:%x", num(), num(), num(), num(), num(), num(), num(), num())
 }
 
 func macAddress() string {
-	num := func() int { return fkgeneral.RandomInt(255) }
+	num := func() int { return randomizer.Int(255) }
 	return fmt.Sprintf("%02x:%02x:%02x:%02x:%02x:%02x", num(), num(), num(), num(), num(), num())
 }
 
@@ -63,5 +63,5 @@ func email(ctx *fk.Context[fkdata.Internet]) string {
 func username(ctx *fk.Context[fkdata.Internet]) string {
 	lastName := fkperson.LastName(fkopts.LastName().SetLang("en"))
 
-	return fmt.Sprintf("%s%d", strings.ToLower(lastName), fkgeneral.RandomInt(9999))
+	return fmt.Sprintf("%s%d", strings.ToLower(lastName), randomizer.Int(9999))
 }
