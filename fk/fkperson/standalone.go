@@ -8,12 +8,12 @@ import (
 
 func FirstName(opts ...fkopts.Builder[fkopts.NameOpts]) string {
 	_opts, _ := fkopts.Build(opts...)
-	ctx := fk.NewContext(_opts.Tag, _opts.Data).SetBinder(fkdata.NewPerson)
+	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data).SetBinder(fkdata.NewPerson)
 	return firstName(ctx, _opts.Gender)
 }
 
 func LastName(opts ...fkopts.Builder[fkopts.LastNameOpts]) string {
 	_opts, _ := fkopts.Build(opts...)
-	ctx := fk.NewContext(_opts.Tag, _opts.Data).SetBinder(fkdata.NewPerson)
+	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data).SetBinder(fkdata.NewPerson)
 	return lastName(ctx)
 }

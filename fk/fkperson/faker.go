@@ -12,6 +12,6 @@ type Faker struct {
 
 func New(opts ...fkopts.Builder[fkopts.FakerOpts[fkdata.Person]]) *Faker {
 	_opts, _ := fkopts.Build(opts...)
-	ctx := fk.NewContext(_opts.Tag, _opts.Data)
+	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data)
 	return &Faker{ctx: ctx}
 }

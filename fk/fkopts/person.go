@@ -6,7 +6,7 @@ import (
 )
 
 type NameOpts struct {
-	Lang
+	LW     *LangWrapper
 	Data   *binder.Data[fkdata.Person]
 	Gender string
 }
@@ -17,6 +17,7 @@ func (opts *NameOpts) Default() *NameOpts {
 }
 
 type NameBuilder struct {
+	lw   *LangWrapper
 	Opts []func(*NameOpts) error
 }
 
@@ -25,20 +26,14 @@ func Name() *NameBuilder {
 }
 
 func (b *NameBuilder) List() []func(*NameOpts) error {
-	return b.Opts
+	return append(b.Opts, func(op *NameOpts) error {
+		op.LW = b.lw
+		return nil
+	})
 }
 
 func (b *NameBuilder) SetLang(lang string) *NameBuilder {
-	b.Opts = append(b.Opts, func(op *NameOpts) error {
-		l, err := NewLang(lang)
-		if err != nil {
-			return err
-		}
-		op.Lang = l
-
-		return nil
-	})
-
+	b.lw.UseLang(lang)
 	return b
 }
 
@@ -53,20 +48,19 @@ func (b *NameBuilder) SetData(d *binder.Data[fkdata.Person]) *NameBuilder {
 func (b *NameBuilder) SetGender(gender string) *NameBuilder {
 	b.Opts = append(b.Opts, func(no *NameOpts) error {
 		no.Gender = gender
-
 		return nil
 	})
-
 	return b
 }
 
 // LastName
 type LastNameOpts struct {
-	Lang
+	LW   *LangWrapper
 	Data *binder.Data[fkdata.Person]
 }
 
 type LastNameBuilder struct {
+	lw   *LangWrapper
 	Opts []func(*LastNameOpts) error
 }
 
@@ -75,20 +69,14 @@ func LastName() *LastNameBuilder {
 }
 
 func (b *LastNameBuilder) List() []func(*LastNameOpts) error {
-	return b.Opts
+	return append(b.Opts, func(op *LastNameOpts) error {
+		op.LW = b.lw
+		return nil
+	})
 }
 
 func (b *LastNameBuilder) SetLang(lang string) *LastNameBuilder {
-	b.Opts = append(b.Opts, func(op *LastNameOpts) error {
-		l, err := NewLang(lang)
-		if err != nil {
-			return err
-		}
-		op.Lang = l
-
-		return nil
-	})
-
+	b.lw.UseLang(lang)
 	return b
 }
 

@@ -16,7 +16,7 @@ func New(opts ...fkopts.Builder[fkopts.FakerOpts[fkdata.Device]]) *Faker {
 	if err != nil {
 		panic(err)
 	}
-	ctx := fk.NewContext(_opts.Tag, _opts.Data).SetBinder(fkdata.NewDevice)
+	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data).SetBinder(fkdata.NewDevice)
 	return &Faker{ctx: ctx}
 }
 

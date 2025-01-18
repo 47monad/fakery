@@ -5,7 +5,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-func NewBinder(lang language.Tag) *binder.Data[Lorem] {
+func NewLorem(lang language.Tag) *binder.Data[Lorem] {
 	d, err := binder.JSON[Lorem]("lorem", lang)
 	if err != nil {
 		panic(err)

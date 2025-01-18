@@ -5,34 +5,28 @@ import (
 )
 
 type FakerOpts[K any] struct {
-	Lang
-	Data          *binder.Data[K]
-	ExcludedWords []string
+	LW   *LangWrapper
+	Data *binder.Data[K]
 }
 
 type FakerBuilder[K any] struct {
+	lw   *LangWrapper
 	Opts []func(*FakerOpts[K]) error
 }
 
 func (b *FakerBuilder[K]) List() []func(*FakerOpts[K]) error {
-	return b.Opts
+	return append(b.Opts, func(f *FakerOpts[K]) error {
+		f.LW = b.lw
+		return nil
+	})
 }
 
 func Faker[K any]() *FakerBuilder[K] {
-	return &FakerBuilder[K]{}
+	return &FakerBuilder[K]{lw: &LangWrapper{}}
 }
 
 func (b *FakerBuilder[K]) SetLang(lang string) *FakerBuilder[K] {
-	b.Opts = append(b.Opts, func(wo *FakerOpts[K]) error {
-		l, err := NewLang(lang)
-		if err != nil {
-			return err
-		}
-		wo.Lang = l
-
-		return nil
-	})
-
+	b.lw.UseLang(lang)
 	return b
 }
 

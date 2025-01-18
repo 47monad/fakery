@@ -16,4 +16,5 @@ func TestWord(t *testing.T) {
 	fmt.Println(faker2.Word())
 	fmt.Println(fklorem.Word())
 	fmt.Println(fklorem.Word(fkopts.Word().SetLang("fa")))
+	fmt.Println(fklorem.Word(fkopts.Word().SetLang("en")))
 }
