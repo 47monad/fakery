@@ -20,3 +20,13 @@ func (f *Faker) Word(opts ...fkopts.Builder[fkopts.WordOpts]) string {
 	_opts, _ := fkopts.Build(opts...)
 	return word(f.ctx, _opts.ExcludedWords)
 }
+
+func (f *Faker) Words(opts ...fkopts.Builder[fkopts.WordsOpts]) []string {
+	_opts, _ := fkopts.Build(opts...)
+	return words(f.ctx, _opts.Count)
+}
+
+func (f *Faker) Sentence(opts ...fkopts.Builder[fkopts.SentenceOpts]) string {
+	_opts, _ := fkopts.Build(opts...)
+	return sentence(f.ctx, _opts.WordCount)
+}

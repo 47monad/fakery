@@ -19,3 +19,8 @@ func Run[K any, S any](d *binder.Data[K], keyer func(*K) []S) S {
 	pool := Select(d, keyer)
 	return randomizer.Element(keyer(pool))
 }
+
+func RunMany[K any, S any](count int, d *binder.Data[K], keyer func(*K) []S) []S {
+	pool := Select(d, keyer)
+	return randomizer.Elements(count, keyer(pool))
+}

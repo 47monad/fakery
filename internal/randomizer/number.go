@@ -8,7 +8,7 @@ import (
 
 func InRange(min int, max int) int {
 	r := rand.New(rand.NewPCG(uint64(time.Now().UnixNano()), 17))
-	return r.IntN(max-min+1) + min
+	return r.IntN(max-min) + min
 }
 
 func Int(max int) int {
