@@ -1,5 +1,10 @@
 package fkopts
 
+import (
+	"github.com/47monad/fakery/fk/fkdata"
+	"github.com/47monad/fakery/internal/binder"
+)
+
 type VersionRange struct {
 	Min, Max int
 }
@@ -54,5 +59,40 @@ func (b *SemVerBuilder) SetPatchRange(min, max int) *SemVerBuilder {
 		return nil
 	})
 
+	return b
+}
+
+// App Name Options
+type AppNameOpts struct {
+	LW   *LangWrapper
+	Data *binder.Data[fkdata.App]
+}
+
+type AppNameBuilder struct {
+	lw   *LangWrapper
+	Opts []func(*AppNameOpts) error
+}
+
+func AppName() *AppNameBuilder {
+	return &AppNameBuilder{lw: &LangWrapper{}}
+}
+
+func (b *AppNameBuilder) List() []func(*AppNameOpts) error {
+	return append(b.Opts, func(op *AppNameOpts) error {
+		op.LW = b.lw
+		return nil
+	})
+}
+
+func (b *AppNameBuilder) SetLang(lang string) *AppNameBuilder {
+	b.lw.UseLang(lang)
+	return b
+}
+
+func (b *AppNameBuilder) SetData(data *binder.Data[fkdata.App]) *AppNameBuilder {
+	b.Opts = append(b.Opts, func(op *AppNameOpts) error {
+		op.Data = data
+		return nil
+	})
 	return b
 }

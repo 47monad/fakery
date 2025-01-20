@@ -9,6 +9,6 @@ import (
 
 func TestFaker(t *testing.T) {
 	faker := fkapp.New()
-	fmt.Println(faker.SemanticVersion())
+	fmt.Println(faker.SemVer())
 	fmt.Println(faker.Name())
 }
