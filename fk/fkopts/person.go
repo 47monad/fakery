@@ -22,7 +22,7 @@ type NameBuilder struct {
 }
 
 func Name() *NameBuilder {
-	return &NameBuilder{}
+	return &NameBuilder{lw: &LangWrapper{}}
 }
 
 func (b *NameBuilder) List() []func(*NameOpts) error {
@@ -65,7 +65,7 @@ type LastNameBuilder struct {
 }
 
 func LastName() *LastNameBuilder {
-	return &LastNameBuilder{}
+	return &LastNameBuilder{lw: &LangWrapper{}}
 }
 
 func (b *LastNameBuilder) List() []func(*LastNameOpts) error {

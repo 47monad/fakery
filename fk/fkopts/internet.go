@@ -59,3 +59,63 @@ func MacAddr() *MacAddrBuilder {
 func (b *MacAddrBuilder) List() []func(*MacAddrOpts) error {
 	return b.Opts
 }
+
+// Email Options
+type EmailOpts struct{}
+
+type EmailBuilder struct {
+	Opts []func(*EmailOpts) error
+}
+
+func Email() *EmailBuilder {
+	return &EmailBuilder{}
+}
+
+func (b *EmailBuilder) List() []func(*EmailOpts) error {
+	return b.Opts
+}
+
+// Username Options
+type UsernameOpts struct{}
+
+type UsernameBuilder struct {
+	Opts []func(*UsernameOpts) error
+}
+
+func Username() *UsernameBuilder {
+	return &UsernameBuilder{}
+}
+
+func (b *UsernameBuilder) List() []func(*UsernameOpts) error {
+	return b.Opts
+}
+
+// Browser Options
+type BrowserOpts struct{}
+
+type BrowserBuilder struct {
+	Opts []func(*BrowserOpts) error
+}
+
+func Browser() *BrowserBuilder {
+	return &BrowserBuilder{}
+}
+
+func (b *BrowserBuilder) List() []func(*BrowserOpts) error {
+	return b.Opts
+}
+
+// Browser Engine Options
+type BrowserEngineOpts struct{}
+
+type BrowserEngineBuilder struct {
+	Opts []func(*BrowserEngineOpts) error
+}
+
+func BrowserEngine() *BrowserEngineBuilder {
+	return &BrowserEngineBuilder{}
+}
+
+func (b *BrowserEngineBuilder) List() []func(*BrowserEngineOpts) error {
+	return b.Opts
+}

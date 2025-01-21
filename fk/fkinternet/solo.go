@@ -24,3 +24,23 @@ func IPv6(opts ...fkopts.Builder[fkopts.IPv6Opts]) string {
 func MacAddr(opts ...fkopts.Builder[fkopts.MacAddrOpts]) string {
 	return macAddress()
 }
+
+func Email(opts ...fkopts.Builder[fkopts.EmailOpts]) string {
+	ctx := fk.NewContext[fkdata.Internet](language.English, nil).SetBinder(fkdata.NewInternet)
+	return email(ctx)
+}
+
+func Username(opts ...fkopts.Builder[fkopts.UsernameOpts]) string {
+	ctx := fk.NewContext[fkdata.Internet](language.English, nil).SetBinder(fkdata.NewInternet)
+	return username(ctx)
+}
+
+func Browser(opts ...fkopts.Builder[fkopts.BrowserOpts]) string {
+	ctx := fk.NewContext[fkdata.Internet](language.English, nil).SetBinder(fkdata.NewInternet)
+	return browser(ctx)
+}
+
+func BrowserEngine(opts ...fkopts.Builder[fkopts.BrowserEngineOpts]) string {
+	ctx := fk.NewContext[fkdata.Internet](language.English, nil).SetBinder(fkdata.NewInternet)
+	return browserEngine(ctx)
+}

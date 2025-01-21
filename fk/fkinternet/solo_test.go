@@ -22,3 +22,19 @@ func TestDomain(t *testing.T) {
 func TestMacAddr(t *testing.T) {
 	fmt.Println(fkinternet.MacAddr())
 }
+
+func TestBrowser(t *testing.T) {
+	fmt.Println(fkinternet.Browser())
+}
+
+func TestBrowserEngine(t *testing.T) {
+	fmt.Println(fkinternet.BrowserEngine())
+}
+
+func TestEmail(t *testing.T) {
+	fmt.Println(fkinternet.Email())
+}
+
+func TestUsername(t *testing.T) {
+	fmt.Println(fkinternet.Username())
+}
