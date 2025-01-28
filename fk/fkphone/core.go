@@ -2,6 +2,8 @@ package fkphone
 
 import (
 	"fmt"
+	"regexp"
+	"strings"
 
 	"github.com/47monad/fakery/fk"
 	"github.com/47monad/fakery/fk/fkdata"
@@ -34,4 +36,10 @@ func number(ctx *fk.Context[fkdata.PhoneNumber]) string {
 func mobileNumber(ctx *fk.Context[fkdata.PhoneNumber]) string {
 	tmpl := sampler.Run(ctx.Data, func(d *fkdata.PhoneNumber) []string { return d.MobileFormat })
 	return templater.MustExec("mobileNumber", tmpl, templater.MergeFuncMaps(TemplateFuncMap(ctx), fkrand.TemplateFuncMap()))
+}
+
+func e164(ctx *fk.Context[fkdata.PhoneNumber]) string {
+	re := regexp.MustCompile(`[0-9]+`)
+	number := strings.Join(re.FindAllString(mobileNumber(ctx), -1), "")
+	return fmt.Sprintf("+%s%s", countryCode(ctx), number)
 }

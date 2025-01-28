@@ -17,3 +17,9 @@ func MobileNumber(opts ...fkopts.Builder[fkopts.GeneralOpts[fkdata.PhoneNumber]]
 	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data).SetBinder(fkdata.NewPhoneNumber)
 	return mobileNumber(ctx)
 }
+
+func E164(opts ...fkopts.Builder[fkopts.GeneralOpts[fkdata.PhoneNumber]]) string {
+	_opts, _ := fkopts.Build(opts...)
+	ctx := fk.NewContext(_opts.LW.GetFirstLang(), _opts.Data).SetBinder(fkdata.NewPhoneNumber)
+	return e164(ctx)
+}
