@@ -1,7 +1,7 @@
 package randomizer
 
 func Element[K any](slice []K) K {
-	return slice[InRange(0, len(slice)-1)]
+	return slice[InRange(0, len(slice))]
 }
 
 func Elements[K any](count int, slice []K) []K {
