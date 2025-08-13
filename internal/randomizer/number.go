@@ -3,11 +3,13 @@ package randomizer
 import (
 	"math"
 	"math/rand/v2"
-	"time"
 )
 
 func InRange(min int, max int) int {
-	r := rand.New(rand.NewPCG(uint64(time.Now().UnixNano()), 17))
+	return getDefaultRNG().IntN(max-min) + min
+}
+
+func InRangeWith(r *rand.Rand, min, max int) int {
 	return r.IntN(max-min) + min
 }
 
