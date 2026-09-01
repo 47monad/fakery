@@ -4,9 +4,15 @@ func Element[K any](slice []K) K {
 	return slice[InRange(0, len(slice))]
 }
 
+// Elements returns count distinct elements picked at random from the slice.
+// If count is greater than the length of the slice it is clamped to
+// len(slice), so the function never panics.
 func Elements[K any](count int, slice []K) []K {
 	if count > len(slice) {
-		panic("count cannot be greater than the length of the slice")
+		count = len(slice)
+	}
+	if count < 0 {
+		count = 0
 	}
 
 	result := make([]K, 0, count)

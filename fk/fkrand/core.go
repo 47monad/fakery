@@ -11,7 +11,9 @@ func digit() int {
 }
 
 func intWithLength(length uint32) int {
-	if length > 10 {
+	// 10^10 - 1 does not fit in an int on 32-bit platforms, so at most
+	// 9 digits can be generated portably.
+	if length > 9 {
 		panic(errors.New("length should be less than 10"))
 	}
 	if length == 0 || length == 1 {
