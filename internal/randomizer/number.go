@@ -6,7 +6,9 @@ import (
 )
 
 func InRange(min int, max int) int {
-	return getDefaultRNG().IntN(max-min) + min
+	// math/rand/v2 top-level functions are goroutine-safe,
+	// unlike a shared *rand.Rand (see issue #7).
+	return rand.IntN(max-min) + min
 }
 
 func InRangeWith(r *rand.Rand, min, max int) int {
@@ -19,7 +21,7 @@ func Int(max int) int {
 
 // Bool returns a random boolean value.
 func Bool() bool {
-	return getDefaultRNG().IntN(2) == 0
+	return rand.IntN(2) == 0
 }
 
 // BoolWith returns a random boolean value using the provided RNG.
