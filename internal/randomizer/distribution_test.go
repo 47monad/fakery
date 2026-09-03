@@ -1,6 +1,7 @@
 package randomizer_test
 
 import (
+	"math/rand/v2"
 	"testing"
 
 	"github.com/47monad/fakery/internal/randomizer"
@@ -44,7 +45,7 @@ func TestBoolDistribution(t *testing.T) {
 }
 
 func TestBoolWithDistribution(t *testing.T) {
-	r := new(randomizer.TimeSource).NewRand()
+	r := rand.New(rand.NewPCG(42, 17))
 	trues, falses := 0, 0
 	for range 10000 {
 		if randomizer.BoolWith(r) {
