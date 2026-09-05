@@ -13,5 +13,5 @@ func numTFunc(args ...interface{}) (interface{}, error) {
 	if args[0] != nil {
 		length = uint32(args[0].(int))
 	}
-	return intWithLength(length), nil
+	return defaultFaker.Int(length), nil
 }
