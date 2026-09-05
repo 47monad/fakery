@@ -2,6 +2,7 @@ package fkdata
 
 import (
 	"github.com/47monad/fakery/internal/binder"
+	"github.com/47monad/fakery/internal/locales"
 	"golang.org/x/text/language"
 )
 
@@ -14,9 +15,5 @@ type PhoneNumber struct {
 }
 
 func NewPhoneNumber(lang language.Tag) *binder.Data[PhoneNumber] {
-	d, err := binder.JSON[PhoneNumber]("phonenumber", lang)
-	if err != nil {
-		panic(err)
-	}
-	return d
+	return locales.Load[PhoneNumber]("phonenumber", lang)
 }
