@@ -2,15 +2,12 @@ package fkdata
 
 import (
 	"github.com/47monad/fakery/internal/binder"
+	"github.com/47monad/fakery/internal/locales"
 	"golang.org/x/text/language"
 )
 
 func NewLorem(lang language.Tag) *binder.Data[Lorem] {
-	d, err := binder.JSON[Lorem]("lorem", lang)
-	if err != nil {
-		panic(err)
-	}
-	return d
+	return locales.Load[Lorem]("lorem", lang)
 }
 
 type Lorem struct {

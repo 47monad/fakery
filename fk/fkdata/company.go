@@ -2,6 +2,7 @@ package fkdata
 
 import (
 	"github.com/47monad/fakery/internal/binder"
+	"github.com/47monad/fakery/internal/locales"
 	"golang.org/x/text/language"
 )
 
@@ -17,9 +18,5 @@ type Company struct {
 }
 
 func NewCompany(lang language.Tag) *binder.Data[Company] {
-	d, err := binder.JSON[Company]("company", lang)
-	if err != nil {
-		panic(err)
-	}
-	return d
+	return locales.Load[Company]("company", lang)
 }
